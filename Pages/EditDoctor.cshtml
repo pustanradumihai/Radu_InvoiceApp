@@ -1,0 +1,10 @@
+﻿@page "{id}"
+@model RadocInvoice.Pages.EditDoctorModel
+
+<h2>Edit Doctor</h2>
+
+<form method="post">
+    @Html.Partial("_DoctorForm", Model.Doctor)
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>

@@ -1,0 +1,31 @@
+﻿@page
+@model RadocInvoice.Pages.AddDoctorContractModel
+@{
+    ViewData["Title"] = "Add New Doctor Contract";
+}
+
+<h2>Add New Doctor Contract</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="DoctorId">Doctor</label>
+        <select class="form-control" id="DoctorId" name="DoctorContract.DoctorId" required>
+            <option value="">-- Select Doctor --</option>
+            @foreach (var doctor in Model.Doctors)
+            {
+                <option value="@doctor.Id">@doctor.Name</option>
+            }
+        </select>
+        <span asp-validation-for="DoctorContract.DoctorId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="ContractExpirationDate">Contract Expiration Date</label>
+        <input type="date" class="form-control" id="ContractExpirationDate" name="DoctorContract.ContractExpirationDate" required />
+        <span asp-validation-for="DoctorContract.ContractExpirationDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+</form>
+
+<div asp-validation-summary="All" class="text-danger"></div>

@@ -1,0 +1,33 @@
+﻿@page "{id}"
+@model RadocInvoice.Pages.EditDoctorContractModel
+@{
+    ViewData["Title"] = "Edit Doctor Contract";
+}
+
+<h2>Edit Doctor Contract</h2>
+
+<form method="post">
+
+    <!-- Hidden input so that the DoctorContract Id is also passed back to the app -->
+    <input type="hidden" asp-for="DoctorContract.Id" />
+    <div class="form-group">
+        <label for="DoctorId">Doctor</label>
+        <select class="form-control" id="DoctorId" asp-for="DoctorContract.DoctorId" asp-items="Model.DoctorList" required>
+            <option value="">-- Select Doctor --</option>
+        </select>
+
+
+        <span asp-validation-for="DoctorContract.DoctorId" class="text-danger"></span>
+    </div>
+     
+    <div class="form-group">
+        <label for="ContractExpirationDate">Contract Expiration Date</label>
+        <input type="date" class="form-control" id="ContractExpirationDate" name="DoctorContract.ContractExpirationDate" value="@Model.DoctorContract.ContractExpirationDate.ToString("yyyy-MM-dd")" required />
+        <span asp-validation-for="DoctorContract.ContractExpirationDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-page="/DoctorContracts" class="btn btn-secondary">Cancel</a>
+</form>
+
+<div asp-validation-summary="All" class="text-danger"></div>

@@ -1,0 +1,31 @@
+﻿@page
+@model RadocInvoice.Pages.ServicesModel
+
+
+<h2>Services</h2>
+<a href="/AddService" class="btn btn-success">Add New Service</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Details</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model.Services)
+        {
+            <tr>
+                <td>@service.Name</td>
+                <td>@service.Details</td>
+                <td>
+                    <a href="/EditService/@service.Id" class="btn btn-warning">Edit</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@service.Id" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

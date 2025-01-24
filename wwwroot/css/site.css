@@ -1,0 +1,46 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: lightgrey;
+}
+
+
+.content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Style the image with a blending effect */
+.image-container {
+    display: inline-block;
+    position: relative;
+}
+
+    .image-container img {
+        border-radius: 50px;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        /* Apply a fading mask effect */
+        mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
+        -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 75%);
+    }

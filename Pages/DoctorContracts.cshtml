@@ -1,0 +1,34 @@
+﻿@page
+@model RadocInvoice.Pages.DoctorContractsModel
+
+@{
+    ViewData["Title"] = "Doctor Contracts";
+}
+
+<h2>Doctor Contracts</h2>
+<a asp-page="/AddDoctorContract" class="btn btn-success">Add New Doctor Contract</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Doctor Name</th>
+            <th>Contract Expiration Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contract in Model.DoctorContracts)
+        {
+            <tr>
+                <td>@contract.Doctor.Name</td>
+                <td>@contract.ContractExpirationDate.ToShortDateString()</td>
+                <td>
+                    <a asp-page="/EditDoctorContract" asp-route-id="@contract.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-page="/DeleteDoctorContract" asp-route-id="@contract.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

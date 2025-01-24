@@ -1,0 +1,33 @@
+﻿@page
+@model RadocInvoice.Pages.ClientsModel
+
+
+<h2>Clients</h2>
+<a href="/AddClient" class="btn btn-success">Add New Client</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Social Security Number</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model.Clients)
+        {
+            <tr>
+                <td>@client.Name</td>
+                <td>@client.SocialSecurityNumber</td>
+                <td>@(string.IsNullOrEmpty(client.PhoneNumber) ? "N/A" : client.PhoneNumber)</td>
+                <td>
+                    <a href="/EditClient/@client.Id" class="btn btn-warning">Edit</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@client.Id" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

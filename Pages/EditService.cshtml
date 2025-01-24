@@ -1,0 +1,19 @@
+﻿@page "{id}"
+@model RadocInvoice.Pages.EditServiceModel
+
+<h2>Edit Service</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="Service.Name" value="@Model.Service.Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Details">Details</label>
+        <input type="text" class="form-control" id="Details" name="Service.Details" value="@Model.Service.Details" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+</form>
+
+<div asp-validation-summary="All" class="text-danger"></div>
