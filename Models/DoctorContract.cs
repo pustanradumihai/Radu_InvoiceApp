@@ -10,7 +10,7 @@ namespace RadocInvoice.Models
         public int Id { get; set; }
 
         [ForeignKey("Doctor")]
-        public int DoctorId { get; set; }  // Foreign key for Doctor
+        public int DoctorId { get; set; }  //fk
 
         [Required]
         [DataType(DataType.Date)]
@@ -18,6 +18,6 @@ namespace RadocInvoice.Models
         public DateTime ContractExpirationDate { get; set; }
 
         [ValidateNever]
-        public Doctor Doctor { get; set; } // Navigation
+        public Doctor Doctor { get; set; } // prop. pt navigare
     }
 }

@@ -9,7 +9,7 @@ namespace RadocInvoice.Pages
 {
     public class AddDoctorContractModel : PageModel
     {
-        private readonly AppDbContext _context; //primim o instanța a bazei de date
+        private readonly AppDbContext _context; 
 
         public AddDoctorContractModel(AppDbContext context)
         {
@@ -19,11 +19,11 @@ namespace RadocInvoice.Pages
         [BindProperty]
         public DoctorContract DoctorContract { get; set; }
 
-        public List<Doctor> Doctors { get; set; }  // For dropdown list
+        public List<Doctor> Doctors { get; set; }  // 4dd 
 
         public async Task<IActionResult> OnGetAsync()
         {
-            // Load all doctors for the dropdown
+            // afisam doc in dd list
             Doctors = await _context.Doctors.ToListAsync();
             return Page();
         }
@@ -32,12 +32,12 @@ namespace RadocInvoice.Pages
         {
             if (!ModelState.IsValid)
             {
-                // Reload doctors in case of validation failure
+                
                 Doctors = await _context.Doctors.ToListAsync();
                 return Page();
             }
 
-            // Get the selected doctor's name for display purposes
+            // afisam doc selectat
             var selectedDoctor = await _context.Doctors.FindAsync(DoctorContract.DoctorId);
             if (selectedDoctor == null)
             {
@@ -46,7 +46,7 @@ namespace RadocInvoice.Pages
                 return Page();
             }
 
-            // DoctorContract.Doctor.Name = selectedDoctor.Name;
+          
 
             _context.DoctorContracts.Add(DoctorContract);
             await _context.SaveChangesAsync();

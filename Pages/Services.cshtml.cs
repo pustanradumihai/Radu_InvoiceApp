@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RadocInvoice.Models;
+using System.Linq;
 
 namespace RadocInvoice.Pages
 {
@@ -17,7 +18,10 @@ namespace RadocInvoice.Pages
 
         public void OnGet()
         {
-            Services = _context.Services.ToList();  // Retrieve all services from the database
+            // Retrieve all services from the database and sort them alphabetically by name
+            Services = _context.Services
+                .OrderBy(s => s.Name) // Sort alphabetically by the "Name" property
+                .ToList();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)

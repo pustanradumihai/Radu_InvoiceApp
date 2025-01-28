@@ -44,11 +44,13 @@ namespace RadocInvoice.Pages
                 .Include(i => i.Client)
                 .Include(i => i.Service)
                 .Include(i => i.Doctor)
+                .OrderByDescending(i => i.Date) // Sortare descrescătoare după dată
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(SearchTerm))
             {
-                query = query.Where(i => i.Client.Name.ToLower().Contains(SearchTerm.ToLower()) || i.Doctor.Name.ToLower().Contains(SearchTerm.ToLower()));
+                query = query.Where(i => i.Client.Name.ToLower().Contains(SearchTerm.ToLower()) ||
+                                         i.Doctor.Name.ToLower().Contains(SearchTerm.ToLower()));
             }
 
             Invoices = await query.ToListAsync();
@@ -57,6 +59,7 @@ namespace RadocInvoice.Pages
 
             return Page();
         }
+
 
         public async Task<IActionResult> OnPostGeneratePdf()
         {
@@ -89,7 +92,7 @@ namespace RadocInvoice.Pages
 
                 document.Add(detailsTable);
 
-                // Add more space after the details table
+               
                 document.Add(new Paragraph("\n\n"));
 
                 // Add invoice title with date

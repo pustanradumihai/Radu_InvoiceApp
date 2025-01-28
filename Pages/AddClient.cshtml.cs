@@ -18,7 +18,7 @@ namespace RadocInvoice.Pages
 
         public void OnGet()
         {
-            // Initialize Client if needed
+          // init.
             Client = new Client();
         }
 

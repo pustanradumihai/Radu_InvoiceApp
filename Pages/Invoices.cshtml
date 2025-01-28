@@ -19,7 +19,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Client</th>
+                      <th>Client</th>
             <th>Doctor</th>
             <th>Service</th>
             <th>Quantity</th>
@@ -31,6 +31,7 @@
     </thead>
     <tbody>
         @foreach (var invoice in Model.Invoices)
+
         {
             <tr>
                 <td>@invoice.Client.Name</td>

@@ -18,7 +18,7 @@ namespace RadocInvoice.Pages
 
         public void OnGet()
         {
-            // Initialize Service if needed
+            // init
             Service = new Service();
         }
 

@@ -18,7 +18,10 @@ namespace RadocInvoice.Pages
 
         public async Task OnGetAsync()
         {
-            DoctorContracts = await _context.DoctorContracts.ToListAsync();
+            DoctorContracts = await _context.DoctorContracts
+                .OrderBy(contract => contract.ContractExpirationDate)  
+                .ToListAsync();
+
             foreach (DoctorContract contract in DoctorContracts)
             {
                 contract.Doctor = _context.Doctors.First(doc => doc.Id == contract.DoctorId);

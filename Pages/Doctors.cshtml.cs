@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RadocInvoice.Models;
+using System.Linq;
 
 namespace RadocInvoice.Pages
 {
@@ -17,7 +18,10 @@ namespace RadocInvoice.Pages
 
         public void OnGet()
         {
-            Doctors = _context.Doctors.ToList();  // Retrieve all doctors from the database
+      
+            Doctors = _context.Doctors
+                .OrderBy(d => d.Name) // sort a-z
+                .ToList();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
@@ -32,7 +36,7 @@ namespace RadocInvoice.Pages
             _context.Doctors.Remove(doctor);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Doctors");  // Redirect back to the index page after deletion
+            return RedirectToPage("/Doctors");  
         }
     }
 }

@@ -5,6 +5,16 @@
 <h2>Clients</h2>
 <a href="/AddClient" class="btn btn-success">Add New Client</a>
 
+<!-- rubrica de cautare -->
+<form method="get" asp-page="/Clients">
+    <div class="form-group">
+        <label for="search">Search by Name:</label>
+        <input type="text" id="search" name="searchQuery" class="form-control" placeholder="Enter client name" value="@Model.SearchQuery" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a href="/Clients" class="btn btn-secondary">Clear</a> 
+</form>
+
 <table class="table">
     <thead>
         <tr>

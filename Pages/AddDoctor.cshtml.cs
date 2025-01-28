@@ -18,7 +18,7 @@ namespace RadocInvoice.Pages
 
         public void OnGet()
         {
-            // Initialize Doctor if needed
+            // init.
             Doctor = new Doctor();
         }
 

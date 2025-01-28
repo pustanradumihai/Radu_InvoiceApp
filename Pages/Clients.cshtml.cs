@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RadocInvoice.Models;
 
@@ -8,6 +8,8 @@ namespace RadocInvoice.Pages
     {
         private readonly AppDbContext _context;
 
+
+
         public ClientsModel(AppDbContext context)
         {
             _context = context;
@@ -15,10 +17,32 @@ namespace RadocInvoice.Pages
 
         public List<Client> Clients { get; set; }
 
-        public void OnGet()
+        public string SearchQuery { get; set; }
+
+
+        public void OnGet(string? searchQuery = null)
         {
-            Clients = _context.Clients.ToList();  // Retrieve all clients from the database
+            SearchQuery = searchQuery;
+
+            if (!string.IsNullOrEmpty(SearchQuery))
+            {
+                // transf in lit 2 be sure
+                Clients = _context.Clients
+                    .Where(c => c.Name.ToLower().Contains(SearchQuery.ToLower()))
+                    .OrderBy(c => c.Name)
+                    .ToList();
+            }
+            else
+            {
+                // afișam tot da nu regasim cautarea
+                Clients = _context.Clients
+                    .OrderBy(c => c.Name)
+                    .ToList();
+            }
         }
+
+
+
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
@@ -32,7 +56,7 @@ namespace RadocInvoice.Pages
             _context.Clients.Remove(client);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Clients");  // Redirect back to the index page after deletion
+            return RedirectToPage("/Clients");  
         }
     }
 }
